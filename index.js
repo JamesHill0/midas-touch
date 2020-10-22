@@ -11,7 +11,7 @@ const getInstagramAccountURL = (account) => {
 
 const getInstagramAccounts = (sessionId, urls) => {
     
-    //Perform parallel POST requests.
+    //Perform parallel GET requests.
     const promises = urls.map(url => axios(
         {
             method: 'get',
@@ -51,17 +51,47 @@ const getInstagramAccounts = (sessionId, urls) => {
     
 }
 
+const getRelatedProfiles = async (instagram_ids, sessionId, query_hash) => {
+    
+    //Perform parallel GET requests.
+    const promises = instagram_ids.map((instagram_id) => axios(
+        {
+            method: 'get',
+              url: `https://www.instagram.com/graphql/query/?query_hash=${query_hash}&variables=%7B%22user_id%22%3A%22${instagram_id}%22%2C%22include_chaining%22%3Atrue%2C%22include_reel%22%3Atrue%2C%22include_suggested_users%22%3Afalse%2C%22include_logged_out_extras%22%3Afalse%2C%22include_highlight_reels%22%3Atrue%2C%22include_live_status%22%3Atrue%7D`,
+              headers: { 
+                Cookie: `sessionid=${sessionId}`,
+              }
+        }
+        
+    ));
+    
+    //Ensures that all GET requests are completed before moving on to the next part of the code.
+    let responses = await Promise.all(promises).then((entries) =>{
+        
+        return entries.map((entry)=>{
+            return entry.data.data.user.edge_chaining.edges;
+        })
+    });
+    
+
+    return responses;
+}
+
 exports.handler = async(event) => {
     
-    let depth = 2;
-
-    //Array of urls to be subjected to requests.
-    let urls = [getInstagramAccountURL('jollibee')];
+    let depth = 1;
     
     //sessionId=3663508345%3AqBRYTLII84qSUu%3A21
-    let accounts = await getInstagramAccounts(event["sessionId"], urls);
     
-    return accounts;
+    //Array of urls to be subjected to requests.
+    // let urls = [getInstagramAccountURL("jollibee")];
+    
+    // let accounts = await getInstagramAccounts(event["sessionId"], urls);
+    
+    // instagramAccounts.push(...accounts);
+    
+    return await getRelatedProfiles(["349355403"],event["sessionId"],event["query_hash"]);
+
 
 }
 
