@@ -9,7 +9,7 @@ const getInstagramAccountURL = (account) => {
     
 }
 
-const getInstagramAccounts = (sessionId, urls) => {
+const getInstagramAccountsFiltered = (sessionId, urls, min_followers, max_followers) => {
     
     //Perform parallel GET requests.
     const promises = urls.map(url => axios(
@@ -26,7 +26,12 @@ const getInstagramAccounts = (sessionId, urls) => {
     
     //Ensures that all GET requests are completed before moving on to the next part of the code.
     let responses = Promise.all(promises).then((entries) =>{
-        return entries.map((entry)=>{
+        return entries.filter((entry)=>{
+            
+            const userData = entry.data.graphql.user;
+            return userData.edge_followed_by.count >=  min_followers && userData.edge_followed_by.count <= max_followers;
+            
+        }).map((entry)=>{
             
             const userData = entry.data.graphql.user;
             
@@ -69,30 +74,31 @@ const getRelatedProfiles = async (instagram_ids, sessionId, query_hash) => {
     let responses = await Promise.all(promises).then((entries) =>{
         
         return entries.map((entry)=>{
-            return entry.data.data.user.edge_chaining.edges;
+        
+            return entry.data.data.user.edge_chaining.edges.map(node => node.node);
+            
         })
     });
     
-
     return responses;
 }
 
 exports.handler = async(event) => {
     
-    let depth = 1;
+    let relatedProfilesURLs=[];
+    let urls = [getInstagramAccountURL(event.username)];
+    const accounts = await getInstagramAccountsFiltered(event["sessionId"], urls, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
+    const accountIds = accounts.map(account => account.id);
+    const relatedProfilesCollection = await getRelatedProfiles(accountIds, event["sessionId"], event["query_hash"]);
     
-    //sessionId=3663508345%3AqBRYTLII84qSUu%3A21
+    relatedProfilesCollection.map(relatedProfiles => {
+        relatedProfiles.map(relatedProfile => {
+            relatedProfilesURLs.push(getInstagramAccountURL(relatedProfile.username));
+        })
+    })
     
-    //Array of urls to be subjected to requests.
-    // let urls = [getInstagramAccountURL("jollibee")];
+    return getInstagramAccountsFiltered(event["sessionId"], relatedProfilesURLs, event["min_followers"], event["max_followers"]);
     
-    // let accounts = await getInstagramAccounts(event["sessionId"], urls);
-    
-    // instagramAccounts.push(...accounts);
-    
-    return await getRelatedProfiles(["349355403"],event["sessionId"],event["query_hash"]);
-
-
 }
 
 
