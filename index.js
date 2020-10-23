@@ -3,10 +3,12 @@ const AWS = require('aws-sdk');
 
 let instagramAccounts = [];
 
+const checkIfInteger = (val) => {
+    return /^\d+$/.test(val);
+}
+
 const getInstagramAccountURL = (account) => {
-    
     return `https://www.instagram.com/${account}/?__a=1`
-    
 }
 
 const getInstagramAccountsFiltered = (sessionId, urls, min_followers, max_followers) => {
@@ -87,6 +89,10 @@ exports.handler = async(event) => {
     
     let relatedProfilesURLs=[];
     let urls = [getInstagramAccountURL(event.username)];
+    
+    let min_followers = checkIfInteger(event["min_followers"]) ? +event["min_followers"]:0;
+    let max_followers = checkIfInteger(event["max_followers"]) ? +event["max_followers"]:Number.MAX_SAFE_INTEGER;
+    
     const accounts = await getInstagramAccountsFiltered(event["sessionId"], urls, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
     const accountIds = accounts.map(account => account.id);
     const relatedProfilesCollection = await getRelatedProfiles(accountIds, event["sessionId"], event["query_hash"]);
@@ -97,7 +103,7 @@ exports.handler = async(event) => {
         })
     })
     
-    return getInstagramAccountsFiltered(event["sessionId"], relatedProfilesURLs, event["min_followers"], event["max_followers"]);
+    return getInstagramAccountsFiltered(event["sessionId"], relatedProfilesURLs, min_followers, max_followers);
     
 }
 
