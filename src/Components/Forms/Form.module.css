@@ -1,27 +1,54 @@
+.form {
+  margin: 40px;
+}
+
 /* label color */
 .inputField label {
   color: #1969a6;
+  font-size: calc(10px + 1vmin);
+  font-family: "Quiapo", "Roboto", "Courier New";
 }
+
+.inputField input {
+  font-family: "Quiapo", "Roboto", "Courier New";
+  color: #261008;
+}
+
 /* label focus color */
-.inputField input[type="text"]:focus + label {
+.inputField input:focus + label {
   color: #1a75bc !important;
 }
 /* label underline focus color */
-.inputField input[type="text"]:focus {
+.inputField input:focus {
   border-bottom: 1px solid #1a75bc !important;
   box-shadow: 0 1px 0 0 #1a75bc !important;
 }
 /* valid color */
-.inputField input[type="text"].valid {
+.inputField input.valid {
   border-bottom: 1px solid #1a75bc !important;
   box-shadow: 0 1px 0 0 #1a75bc !important;
 }
 /* invalid color */
-.inputFieldinput[type="text"].invalid {
+.inputFieldinput.invalid {
   border-bottom: 1px solid #a11731 !important;
   box-shadow: 0 1px 0 0 #a11731 !important;
 }
 /* icon prefix focus color */
 .inputField .prefix.active {
   color: #1a75bc !important;
+}
+
+.inputField i {
+  font-size: calc(10px + 1vmin);
+  color: #63190f !important;
+}
+
+.searchButton {
+  font-family: "Maragsâ-Display", "Roboto", "Courier New";
+  background-color: #f9c758;
+  color: #63190f;
+}
+
+.searchButton:hover {
+  background-color: #f2d494;
 }
