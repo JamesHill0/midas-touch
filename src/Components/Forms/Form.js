@@ -26,7 +26,6 @@ const Form = (props) => {
 
     return (
         <form className={`row ${classes.form}`} onSubmit={handleSubmit}>
-
                 <div className="row">
                     <div className={`${classes.inputField} input-field col s6`}>
                         <i className="material-icons prefix">vpn_key</i>
@@ -46,12 +45,12 @@ const Form = (props) => {
                         <label for="instagram_username">Instagram Username</label>
                     </div>
                     <div className={`${classes.inputField} input-field col s6`}>
-                        <i className="material-icons prefix">enhanced_encryption</i>
+                        <i className="material-icons prefix">accessibility</i>
                         <input id="min_followers" type="number" className="validate" value={minFollowers} onChange={handleMinFollowers}/>
                         <label for="min_followers">Minimum Followers</label>
                     </div>
                     <div className={`${classes.inputField} input-field col s6`}>
-                        <i className="material-icons prefix">enhanced_encryption</i>
+                        <i className="material-icons prefix">people</i>
                         <input id="max_followers" type="number" className="validate" value={maxFollowers} onChange={handleMaxFollowers}/>
                         <label for="max_followers">Maximum Followers</label>
                     </div>
