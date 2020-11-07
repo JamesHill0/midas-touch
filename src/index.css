@@ -1,13 +1,43 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  background-color: #e3d6ca;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@font-face {
+  font-family: "Kawit-Italic";
+  src: local("Kawit-Italic"),
+    url(./Assets/Fonts/KawitFree-Italic.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "Kawit-ExtItalic";
+  src: local("Kawit-ExtItalic"),
+    url(./Assets/Fonts/KawitFree-ExtItalic.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "Kawit-CndItalic";
+  src: local("Kawit-CndItalic"),
+    url(./Assets/Fonts/KawitFree-CndItalic.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "Maragsâ-Display";
+  src: local("Maragsâ-Display"),
+    url(./Assets/Fonts/Maragsâ-Display.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "Quiapo";
+  src: local("Quiapo"), url(./Assets/Fonts/Quiapo_Free.otf) format("truetype");
 }
