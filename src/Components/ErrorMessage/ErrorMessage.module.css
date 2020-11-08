@@ -1,0 +1,30 @@
+.errorMessageContainer {
+  background-color: #c1c2c4;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+}
+
+.errorMessageHeader {
+  background-color: #ba403f;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.errorMessageHeader i {
+  color: #f0e4d6;
+}
+
+.leadMessage {
+  font-family: "Quiapo", "Roboto", "Courier New";
+  font-size: calc(20px + 1vmin);
+  color: #ba403f;
+}
+
+.reasons {
+  font-family: "Quiapo", "Roboto", "Courier New";
+  font-size: calc(15px + 1vmin);
+  color: #57747c;
+}

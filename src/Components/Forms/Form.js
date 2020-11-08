@@ -79,9 +79,17 @@ const Form = (props) => {
                     </div>
                 </div>
                 <div className="row">
-                    <button disabled={props.isSearchButtonDisabled} className={`waves-effect waves-light btn right ${classes.searchButton}`} type="submit" name="search">Search
-                        <i className="material-icons left">search</i>
-                    </button>
+                    <div className={`col s12 m1 l1 center-align ${classes.warningIcon}`}>
+                        <i className="medium material-icons prefix">warning</i>
+                    </div>
+                    <div className={`col s12 m9 l9 valign-wrapper ${classes.warning}`}>
+                        <span>Do not attempt to go trigger-happy with the searches as this will result in getting your Instagram account temporarily blocked. Try to limit yourself to 3 to 5 searches per hour and change your Instagram session Id everytime you search. Use at your own risk if you go beyond what's advised.</span>
+                    </div>
+                    <div className="col s12 m2 l2">
+                        <button disabled={props.isSearchButtonDisabled} className={`waves-effect waves-light btn right ${classes.searchButton}`} type="submit" name="search">Search
+                            <i className="material-icons left">search</i>
+                        </button>
+                    </div>
                 </div>
         </form>
 

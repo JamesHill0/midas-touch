@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "../../Components/Forms/Form";
 import TableResults from "../../Components/TableResults/TableResults";
 import Spinner from "../../Components/UI/Spinner/Spinner";
+import ErrorMessage from "../../Components/ErrorMessage/ErrorMessage";
 const axios = require("axios");
 
 const Main = () => {
@@ -42,8 +43,6 @@ const Main = () => {
             activateLoading(false);
             disableSearchButton(false);
         }).catch(function (error) {
-            console.log(error);
-            console.log(JSON.stringify(error));
             setFetchResult(error);
             //{"message":"Network Error","name":"Error","stack":"Error: Network Error\n    at createError (http://localhost:3000/static/js/0.chunk.js:1040:15)\n    at XMLHttpRequest.handleError (http://localhost:3000/static/js/0.chunk.js:536:14)","config":{"url":"https://9tr1t1v7x1.execute-api.ap-southeast-1.amazonaws.com/Development/getinstagramaccounts1","method":"get","headers":{"Accept":"application/json, text/plain, */*"},"params":{"sessionId":"3663508345%3AWnVxoRWJ5fv0qz%3A15","query_hash":"d4d88dc1500312af6f937f7b804c68c3","username":"jollibee","max_followers":"1000000","min_followers":"200"},"transformRequest":[null],"transformResponse":[null],"timeout":0,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN","maxContentLength":-1,"maxBodyLength":-1}}
             activateLoading(false);
@@ -56,7 +55,11 @@ const Main = () => {
         if (isLoading) {
             return <Spinner />
         } else {
-            return <TableResults results={results} />
+            if ((Object.keys(results).length === 0 && results.constructor === Object) || results.name === "Error" || "errorType" in results) {
+                return <ErrorMessage errorResults={results} />
+            } else {
+                return <TableResults results={results} />
+            }
         }
     
     }

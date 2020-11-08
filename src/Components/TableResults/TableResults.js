@@ -29,7 +29,7 @@ const TableResults = (props) => {
     return(
         <Aux>
             <div className="row">
-                <CSVLink className={`btn-floating right ${classes.downloadButton}`} data={props.results} filename={"midas-results.csv"}><i class="material-icons">get_app</i></CSVLink>
+                <CSVLink className={`btn-floating right pulse ${classes.downloadButton}`} data={props.results} filename={"midas-results.csv"}><i className="material-icons">get_app</i></CSVLink>
             </div>
             <div className="row">
                 <table className={`responsive-table centered highlight ${classes.tableResult}`} >

@@ -52,3 +52,14 @@
 .searchButton:hover {
   background-color: #f2d494;
 }
+
+.warning {
+  font-family: "Maragsâ-Display", "Roboto", "Courier New";
+  font-size: calc(8px + 1vmin);
+  color: #ba403f;
+}
+
+.warningIcon {
+  font-size: calc(25px + 1vmin);
+  color: #ba403f;
+}

@@ -27,6 +27,9 @@
 
 .downloadButton {
   background-color: #f9c758;
+}
+
+.downloadButton i {
   color: #63190f;
 }
 
