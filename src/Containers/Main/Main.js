@@ -51,10 +51,20 @@ const Main = () => {
         });
     }
 
+    const generateResults = () => {
+
+        if (isLoading) {
+            return <Spinner />
+        } else {
+            return <TableResults results={results} />
+        }
+    
+    }
+
     return (
         <div className="container">
             <Form fetchResults={fetchResults} isSearchButtonDisabled={isSearchButtonDisabled} disableSearchButton={disableSearchButton}/>
-            {(showTable) ? <TableResults isLoading={isLoading} results={results} /> : null }
+            {(showTable) ? generateResults() : null }
         </div>
     );
 

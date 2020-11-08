@@ -1,0 +1,35 @@
+.tableResult {
+  background-color: #c1c2c4;
+  border-radius: 20px;
+  border: 10px solid #ba403f;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.tableResult thead tr th {
+  color: #ba403f;
+  font-size: calc(10px + 1vmin);
+  font-family: "Quiapo", "Roboto", "Courier New";
+}
+
+.tableResult tbody tr td {
+  color: #303032;
+  font-size: calc(7px + 1vmin);
+  font-family: "Maragsâ-Display", "Roboto", "Courier New";
+}
+
+.tableResultPic {
+  width: calc(40px + 1vmin);
+  height: calc(40px + 1vmin);
+  border-radius: 10px;
+  padding: 0;
+}
+
+.downloadButton {
+  background-color: #f9c758;
+  color: #63190f;
+}
+
+.downloadButton:hover {
+  background-color: #f2d494;
+}

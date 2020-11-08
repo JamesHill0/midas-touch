@@ -83,7 +83,6 @@ const Form = (props) => {
                         <i className="material-icons left">search</i>
                     </button>
                 </div>
-
         </form>
 
     );
